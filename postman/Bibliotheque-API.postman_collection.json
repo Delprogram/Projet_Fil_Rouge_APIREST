@@ -1,0 +1,1665 @@
+{
+  "info": {
+    "_postman_id": "02721cf8-f5a1-441e-8f1f-c12a6d777a90",
+    "name": "Bibliotheque-API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auteurs",
+      "item": [
+        {
+          "name": "R01 — GET /auteurs → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R02 — GET /auteurs/1 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R03 — GET /auteurs/99 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "99"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R04 — POST /auteurs → 201",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Vernes\", \"prenom\": \"Jules\", \"nationalite\": \"Française\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R05 — POST /auteurs → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"\", \"prenom\": \"Jules\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R06 — PUT /auteurs/6 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/6",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "6"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Verne\", \"prenom\": \"Jules\", \"nationalite\": \"Française\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R07 — PUT /auteurs/99 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "99"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Verne\", \"prenom\": \"Jules\", \"nationalite\": \"Française\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R08 — DELETE /auteurs/1 → 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R09 — DELETE /auteurs/5 → 204",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R10 — DELETE /auteurs/5 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R11 — GET /auteurs/1/livres → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/1/livres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "1",
+                "livres"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R12 — GET /auteurs/99/livres → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auteurs/99/livres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auteurs",
+                "99",
+                "livres"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Livres",
+      "item": [
+        {
+          "name": "R13 — GET /livres?page=0&size=3&sort=prix,desc → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres?page=0&size=3&sort=prix,desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "3"
+                },
+                {
+                  "key": "sort",
+                  "value": "prix,desc"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R14 — GET /livres/1 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R15 — GET /livres/99 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "99"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R16 — GET /livres/abc → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/abc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "abc"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R17 — POST /livres → 201",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Vingt Mille Lieues sous les mers\", \"isbn\": \"978-2-253-00631-2\", \"prix\": 7.9, \"anneePublication\": 1870, \"stock\": 2, \"auteurId\": 6}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R18 — POST /livres → 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Vingt Mille Lieues sous les mers\", \"isbn\": \"978-2-253-00631-2\", \"prix\": 7.9, \"anneePublication\": 1870, \"stock\": 2, \"auteurId\": 6}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R19 — POST /livres → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Livre fantôme\", \"isbn\": \"978-2-0000-0000-1\", \"prix\": 10.0, \"anneePublication\": 2020, \"stock\": 1, \"auteurId\": 99}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R20 — POST /livres → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"\", \"isbn\": \"978-2-0000-0000-2\", \"prix\": -3, \"stock\": 1, \"auteurId\": 1}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R21 — PUT /livres/9 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres/9",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "9"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Vingt Mille Lieues sous les mers\", \"isbn\": \"978-2-253-00631-2\", \"prix\": 8.5, \"anneePublication\": 1870, \"stock\": 2, \"auteurId\": 6}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R22 — PUT /livres/9 → 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres/9",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "9"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Vingt Mille Lieues sous les mers\", \"isbn\": \"978-2-07-040850-4\", \"prix\": 8.5, \"anneePublication\": 1870, \"stock\": 2, \"auteurId\": 6}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R23 — PUT /livres/99 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/livres/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "99"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Livre inconnu\", \"isbn\": \"978-2-0000-0000-3\", \"prix\": 10.0, \"anneePublication\": 2020, \"stock\": 1, \"auteurId\": 1}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R24 — GET /livres/recherche?titre=harry → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/recherche?titre=harry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "recherche"
+              ],
+              "query": [
+                {
+                  "key": "titre",
+                  "value": "harry"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R25 — GET /livres/recherche → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/recherche",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "recherche"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R26 — GET /livres/disponibles → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/disponibles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "disponibles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R27 — PATCH /livres/8/stock?quantite=0 → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/8/stock?quantite=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "8",
+                "stock"
+              ],
+              "query": [
+                {
+                  "key": "quantite",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R28 — PATCH /livres/99/stock?quantite=2 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/99/stock?quantite=2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "99",
+                "stock"
+              ],
+              "query": [
+                {
+                  "key": "quantite",
+                  "value": "2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Emprunts et fin du scénario",
+      "item": [
+        {
+          "name": "R29 — POST /emprunts → 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"livreId\": 8, \"emprunteur\": \"Alice Durand\", \"emailEmprunteur\": \"alice.durand@email.com\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R30 — POST /emprunts → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"livreId\": 99, \"emprunteur\": \"Alice Durand\", \"emailEmprunteur\": \"alice.durand@email.com\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R31 — POST /emprunts → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"livreId\": 2, \"emprunteur\": \"Alice Durand\", \"emailEmprunteur\": \"alice.durand\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R32 — POST /emprunts → 201",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"livreId\": 2, \"emprunteur\": \"Alice Durand\", \"emailEmprunteur\": \"alice.durand@email.com\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R33 — GET /livres/2 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R34 — GET /emprunts/4 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "4"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R35 — GET /emprunts/99 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "99"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R36 — GET /emprunts/en-cours → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/en-cours",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "en-cours"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R37 — GET /emprunts/en-retard → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/en-retard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "en-retard"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R38 — PATCH /emprunts/2/retour → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/2/retour",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "2",
+                "retour"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R39 — PATCH /emprunts/2/retour → 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/2/retour",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "2",
+                "retour"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R40 — PATCH /emprunts/99/retour → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/99/retour",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "99",
+                "retour"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R41 — PATCH /livres/8/stock?quantite=2 → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/8/stock?quantite=2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "8",
+                "stock"
+              ],
+              "query": [
+                {
+                  "key": "quantite",
+                  "value": "2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R42 — POST /emprunts → 201",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"livreId\": 8, \"emprunteur\": \"Paul Morel\", \"emailEmprunteur\": \"paul.morel@email.com\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "R43 — GET /emprunts → 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R44 — DELETE /livres/9 → 204",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/9",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "9"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R45 — DELETE /livres/9 → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/9",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "9"
+              ]
+            }
+          }
+        },
+        {
+          "name": "R46 — GET /inexistant → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Code 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inexistant",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inexistant"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1"
+    }
+  ]
+}
