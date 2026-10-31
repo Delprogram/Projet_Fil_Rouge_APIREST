@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-// Ce que le client envoie pour emprunter un livre.
 // Pas d'id, pas de dates, pas de "rendu" : c'est le serveur qui les remplit (RM5).
 public class EmpruntRequest {
 

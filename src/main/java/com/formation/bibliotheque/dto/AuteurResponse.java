@@ -2,8 +2,6 @@ package com.formation.bibliotheque.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-// Ce que le client reçoit. Lecture seule : pas de setters.
-// @JsonPropertyOrder garde l'ordre des champs dans le JSON (sinon Jackson trie par ordre alphabétique)
 @JsonPropertyOrder({"id", "nom", "prenom", "nationalite"})
 public class AuteurResponse {
 

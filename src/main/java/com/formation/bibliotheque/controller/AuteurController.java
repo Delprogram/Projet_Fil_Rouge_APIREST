@@ -30,8 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-// Endpoints 1 à 6 : les auteurs.
-// Chaque méthode suit le même plan : 1. vérifier  2. agir  3. répondre
 @Tag(name = "Auteurs", description = "Gestion des auteurs")
 @RestController
 @RequestMapping("/api/v1/auteurs")
@@ -52,7 +50,7 @@ public class AuteurController {
     public ResponseEntity<PagedModel<AuteurResponse>> listerTous(
             @PageableDefault(size = 10, sort = "nom") Pageable pageable) {
         Page<Auteur> page = auteurService.recupererTous(pageable);
-        return ResponseEntity.ok(AuteurMapper.versPage(page));                     // 200
+        return ResponseEntity.ok(AuteurMapper.versPage(page));
     }
 
     // Endpoint 2 — GET /api/v1/auteurs/{id}
@@ -63,17 +61,14 @@ public class AuteurController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<AuteurResponse> obtenirParId(@PathVariable Long id) {
-        // 1. Vérifier
         Optional<Auteur> resultat = auteurService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
-        // 3. Répondre (rien à "faire" ici, on lit seulement)
-        return ResponseEntity.ok(AuteurMapper.versResponse(resultat.get()));       // 200
+        return ResponseEntity.ok(AuteurMapper.versResponse(resultat.get()));
     }
 
     // Endpoint 3 — POST /api/v1/auteurs
-    // Si le corps est invalide, @Valid renvoie 400 tout seul
     @Operation(summary = "Créer un auteur")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Auteur créé"),
@@ -81,10 +76,8 @@ public class AuteurController {
     })
     @PostMapping
     public ResponseEntity<AuteurResponse> creer(@Valid @RequestBody AuteurRequest request) {
-        // 2. Agir
         Auteur auteurCree = auteurService.creer(AuteurMapper.versEntite(request));
-        // 3. Répondre
-        return ResponseEntity.status(HttpStatus.CREATED).body(AuteurMapper.versResponse(auteurCree)); // 201
+        return ResponseEntity.status(HttpStatus.CREATED).body(AuteurMapper.versResponse(auteurCree));
     }
 
     // Endpoint 4 — PUT /api/v1/auteurs/{id}
@@ -97,15 +90,12 @@ public class AuteurController {
     @PutMapping("/{id}")
     public ResponseEntity<AuteurResponse> mettreAJour(@PathVariable Long id,
                                                       @Valid @RequestBody AuteurRequest request) {
-        // 1. Vérifier
         Optional<Auteur> resultat = auteurService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
-        // 2. Agir
         Auteur auteurModifie = auteurService.mettreAJour(resultat.get(), AuteurMapper.versEntite(request));
-        // 3. Répondre
-        return ResponseEntity.ok(AuteurMapper.versResponse(auteurModifie));        // 200
+        return ResponseEntity.ok(AuteurMapper.versResponse(auteurModifie));
     }
 
     // Endpoint 5 — DELETE /api/v1/auteurs/{id} : deux vérifications, puis l'action
@@ -117,17 +107,14 @@ public class AuteurController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> supprimer(@PathVariable Long id) {
-        // 1. Vérifier, dans l'ordre du tableau
         if (!auteurService.existe(id)) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
         if (auteurService.aDesLivres(id)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();             // 409 (RM3)
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        // 2. Agir
         auteurService.supprimer(id);
-        // 3. Répondre
-        return ResponseEntity.noContent().build();                                 // 204
+        return ResponseEntity.noContent().build();
     }
 
     // Endpoint 6 — GET /api/v1/auteurs/{id}/livres
@@ -140,13 +127,10 @@ public class AuteurController {
     public ResponseEntity<PagedModel<LivreResponse>> listerLivres(
             @PathVariable Long id,
             @PageableDefault(size = 10, sort = "titre") Pageable pageable) {
-        // 1. Vérifier
         if (!auteurService.existe(id)) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
-        // 2. Agir
         Page<Livre> page = auteurService.recupererLivres(id, pageable);
-        // 3. Répondre
-        return ResponseEntity.ok(LivreMapper.versPage(page));                      // 200
+        return ResponseEntity.ok(LivreMapper.versPage(page));
     }
 }

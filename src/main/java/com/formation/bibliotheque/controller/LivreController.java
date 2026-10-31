@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-// Endpoints 7 à 14 : les livres. Même plan : vérifier, agir, répondre.
 @Tag(name = "Livres", description = "Catalogue des livres")
 @RestController
 @RequestMapping("/api/v1/livres")
@@ -50,7 +49,7 @@ public class LivreController {
     public ResponseEntity<PagedModel<LivreResponse>> listerTous(
             @PageableDefault(size = 10, sort = "titre") Pageable pageable) {
         Page<Livre> page = livreService.recupererTous(pageable);
-        return ResponseEntity.ok(LivreMapper.versPage(page));                      // 200
+        return ResponseEntity.ok(LivreMapper.versPage(page));
     }
 
     // Endpoint 8 — GET /api/v1/livres/{id}
@@ -63,9 +62,9 @@ public class LivreController {
     public ResponseEntity<LivreResponse> obtenirParId(@PathVariable Long id) {
         Optional<Livre> resultat = livreService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(LivreMapper.versResponse(resultat.get()));        // 200
+        return ResponseEntity.ok(LivreMapper.versResponse(resultat.get()));
     }
 
     // Endpoint 9 — POST /api/v1/livres
@@ -77,21 +76,17 @@ public class LivreController {
     })
     @PostMapping
     public ResponseEntity<LivreResponse> creer(@Valid @RequestBody LivreRequest request) {
-        // 1. Vérifier
         if (!livreService.auteurExiste(request.getAuteurId())) {
-            return ResponseEntity.badRequest().build();                            // 400 auteur inexistant
+            return ResponseEntity.badRequest().build();
         }
         if (livreService.isbnExiste(request.getIsbn())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();             // 409 (RM2)
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        // 2. Agir
         Livre livreCree = livreService.creer(LivreMapper.versEntite(request));
-        // 3. Répondre
-        return ResponseEntity.status(HttpStatus.CREATED).body(LivreMapper.versResponse(livreCree)); // 201
+        return ResponseEntity.status(HttpStatus.CREATED).body(LivreMapper.versResponse(livreCree));
     }
 
     // Endpoint 10 — PUT /api/v1/livres/{id}
-    // Attention à l'ordre : d'abord 404 si le livre n'existe pas
     @Operation(summary = "Modifier un livre")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Livre modifié"),
@@ -102,21 +97,18 @@ public class LivreController {
     @PutMapping("/{id}")
     public ResponseEntity<LivreResponse> mettreAJour(@PathVariable Long id,
                                                      @Valid @RequestBody LivreRequest request) {
-        // 1. Vérifier
         Optional<Livre> resultat = livreService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
         if (!livreService.auteurExiste(request.getAuteurId())) {
-            return ResponseEntity.badRequest().build();                            // 400 auteur inexistant
+            return ResponseEntity.badRequest().build();
         }
         if (livreService.isbnUtiliseParUnAutreLivre(request.getIsbn(), id)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();             // 409 (RM2)
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        // 2. Agir
         Livre livreModifie = livreService.mettreAJour(resultat.get(), LivreMapper.versEntite(request));
-        // 3. Répondre
-        return ResponseEntity.ok(LivreMapper.versResponse(livreModifie));          // 200
+        return ResponseEntity.ok(LivreMapper.versResponse(livreModifie));
     }
 
     // Endpoint 11 — DELETE /api/v1/livres/{id}
@@ -128,14 +120,13 @@ public class LivreController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> supprimer(@PathVariable Long id) {
         if (!livreService.existe(id)) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
         livreService.supprimer(id);
-        return ResponseEntity.noContent().build();                                 // 204
+        return ResponseEntity.noContent().build();
     }
 
     // Endpoint 12 — GET /api/v1/livres/recherche?titre=...
-    // Si "titre" est absent, Spring renvoie 400 tout seul
     @Operation(summary = "Rechercher des livres par titre (sans tenir compte des majuscules)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Page des livres trouvés (peut être vide)"),
@@ -146,7 +137,7 @@ public class LivreController {
             @RequestParam String titre,
             @PageableDefault(size = 10, sort = "titre") Pageable pageable) {
         Page<Livre> page = livreService.rechercherParTitre(titre, pageable);
-        return ResponseEntity.ok(LivreMapper.versPage(page));                      // 200
+        return ResponseEntity.ok(LivreMapper.versPage(page));
     }
 
     // Endpoint 13 — GET /api/v1/livres/disponibles (RM4 : stock > 0)
@@ -158,7 +149,7 @@ public class LivreController {
     public ResponseEntity<PagedModel<LivreResponse>> listerDisponibles(
             @PageableDefault(size = 10, sort = "titre") Pageable pageable) {
         Page<Livre> page = livreService.recupererDisponibles(pageable);
-        return ResponseEntity.ok(LivreMapper.versPage(page));                      // 200
+        return ResponseEntity.ok(LivreMapper.versPage(page));
     }
 
     // Endpoint 14 — PATCH /api/v1/livres/{id}/stock?quantite=...
@@ -171,17 +162,14 @@ public class LivreController {
     @PatchMapping("/{id}/stock")
     public ResponseEntity<LivreResponse> ajouterStock(@PathVariable Long id,
                                                       @RequestParam Integer quantite) {
-        // 1. Vérifier : d'abord la quantité, ensuite le livre
         if (quantite <= 0) {
-            return ResponseEntity.badRequest().build();                            // 400
+            return ResponseEntity.badRequest().build();
         }
         Optional<Livre> resultat = livreService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
-        // 2. Agir
         Livre livre = livreService.ajouterStock(resultat.get(), quantite);
-        // 3. Répondre
-        return ResponseEntity.ok(LivreMapper.versResponse(livre));                 // 200
+        return ResponseEntity.ok(LivreMapper.versResponse(livre));
     }
 }

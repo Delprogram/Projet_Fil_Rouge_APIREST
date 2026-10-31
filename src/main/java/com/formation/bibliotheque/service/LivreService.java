@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-// La logique métier des livres
 @Service
 public class LivreService {
 
@@ -43,14 +42,12 @@ public class LivreService {
     }
 
     // RM2 (modification) : l'ISBN est-il pris par un AUTRE livre ?
-    // Si c'est le livre lui-même, pas de souci : il garde son ISBN.
     public boolean isbnUtiliseParUnAutreLivre(String isbn, Long idLivre) {
         Optional<Livre> resultat = livreRepository.findByIsbn(isbn);
         if (resultat.isEmpty()) {
             return false;
         }
         Livre livreTrouve = resultat.get();
-        // equals et pas == pour comparer deux Long
         return !livreTrouve.getId().equals(idLivre);
     }
 
@@ -73,7 +70,6 @@ public class LivreService {
         livreRepository.deleteById(id);
     }
 
-    // Recherche dans le titre, sans tenir compte des majuscules
     public Page<Livre> rechercherParTitre(String titre, Pageable pageable) {
         return livreRepository.findByTitreContainingIgnoreCase(titre, pageable);
     }
@@ -83,7 +79,6 @@ public class LivreService {
         return livreRepository.findByStockGreaterThan(0, pageable);
     }
 
-    // Réapprovisionnement : on ajoute la quantité au stock actuel
     public Livre ajouterStock(Livre livre, Integer quantite) {
         livre.setStock(livre.getStock() + quantite);
         return livreRepository.save(livre);

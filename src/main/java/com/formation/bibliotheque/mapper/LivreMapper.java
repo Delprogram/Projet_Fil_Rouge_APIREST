@@ -10,13 +10,11 @@ import org.springframework.data.web.PagedModel;
 import java.util.ArrayList;
 import java.util.List;
 
-// Convertit DTO <-> entité pour les livres
 public final class LivreMapper {
 
     private LivreMapper() {
     }
 
-    // Requête du client -> entité (on recopie les 6 champs, l'id reste null)
     public static Livre versEntite(LivreRequest request) {
         Livre livre = new Livre();
         livre.setTitre(request.getTitre());
@@ -28,7 +26,6 @@ public final class LivreMapper {
         return livre;
     }
 
-    // Entité -> réponse pour le client
     public static LivreResponse versResponse(Livre livre) {
         return new LivreResponse(
                 livre.getId(),
@@ -50,7 +47,6 @@ public final class LivreMapper {
     }
 
     public static PagedModel<LivreResponse> versPage(Page<Livre> page) {
-        // Même principe que pour les auteurs
         List<LivreResponse> contenu = versResponses(page.getContent());
         Page<LivreResponse> pageDto = new PageImpl<>(contenu, page.getPageable(), page.getTotalElements());
         return new PagedModel<>(pageDto);

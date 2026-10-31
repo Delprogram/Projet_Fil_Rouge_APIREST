@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-// Un livre = une ligne de la table "livres"
 @Entity
 @Table(name = "livres")
 public class Livre {
@@ -26,7 +25,6 @@ public class Livre {
     @Column(nullable = false)
     private Double prix;
 
-    // Pas obligatoire
     private Integer anneePublication;
 
     @Column(nullable = false)
@@ -38,8 +36,6 @@ public class Livre {
 
     public Livre() {
     }
-
-    // --- Getters et setters ---
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

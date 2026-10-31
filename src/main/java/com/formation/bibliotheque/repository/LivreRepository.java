@@ -8,17 +8,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-// Spring Data écrit le SQL tout seul à partir du nom des méthodes
 @Repository
 public interface LivreRepository extends JpaRepository<Livre, Long> {
 
-    Optional<Livre> findByIsbn(String isbn);                                      // le livre qui a cet ISBN
+    Optional<Livre> findByIsbn(String isbn);
 
-    boolean existsByAuteurId(Long auteurId);                                      // true si l'auteur a au moins un livre
+    boolean existsByAuteurId(Long auteurId);
 
-    Page<Livre> findByAuteurId(Long auteurId, Pageable pageable);                 // les livres d'un auteur
+    Page<Livre> findByAuteurId(Long auteurId, Pageable pageable);
 
-    Page<Livre> findByTitreContainingIgnoreCase(String titre, Pageable pageable); // titre contenant le texte
+    Page<Livre> findByTitreContainingIgnoreCase(String titre, Pageable pageable);
 
-    Page<Livre> findByStockGreaterThan(Integer stock, Pageable pageable);         // stock strictement supérieur
+    Page<Livre> findByStockGreaterThan(Integer stock, Pageable pageable);
 }

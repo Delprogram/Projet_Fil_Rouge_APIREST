@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
-// Ce que le client envoie pour créer ou modifier un livre
 public class LivreRequest {
 
     @NotBlank(message = "Le titre est obligatoire")
@@ -17,12 +16,10 @@ public class LivreRequest {
     @Size(max = 20, message = "L'ISBN ne doit pas dépasser 20 caractères")
     private String isbn;
 
-    // @Positive accepte null, d'où le @NotNull en plus
     @NotNull(message = "Le prix est obligatoire")
     @Positive(message = "Le prix doit être positif")
     private Double prix;
 
-    // Optionnel : seulement @Positive
     @Positive(message = "L'année de publication doit être positive")
     private Integer anneePublication;
 

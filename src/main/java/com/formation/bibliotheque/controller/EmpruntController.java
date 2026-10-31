@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-// Endpoints 15 à 20 : les emprunts. Même plan : vérifier, agir, répondre.
 @Tag(name = "Emprunts", description = "Emprunts et retours des livres")
 @RestController
 @RequestMapping("/api/v1/emprunts")
@@ -47,7 +46,7 @@ public class EmpruntController {
     public ResponseEntity<PagedModel<EmpruntResponse>> listerTous(
             @PageableDefault(size = 10, sort = "dateEmprunt") Pageable pageable) {
         Page<Emprunt> page = empruntService.recupererTous(pageable);
-        return ResponseEntity.ok(EmpruntMapper.versPage(page));                    // 200
+        return ResponseEntity.ok(EmpruntMapper.versPage(page));
     }
 
     // Endpoint 16 — GET /api/v1/emprunts/{id}
@@ -60,9 +59,9 @@ public class EmpruntController {
     public ResponseEntity<EmpruntResponse> obtenirParId(@PathVariable Long id) {
         Optional<Emprunt> resultat = empruntService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(EmpruntMapper.versResponse(resultat.get()));      // 200
+        return ResponseEntity.ok(EmpruntMapper.versResponse(resultat.get()));
     }
 
     // Endpoint 17 — POST /api/v1/emprunts
@@ -74,17 +73,14 @@ public class EmpruntController {
     })
     @PostMapping
     public ResponseEntity<EmpruntResponse> creer(@Valid @RequestBody EmpruntRequest request) {
-        // 1. Vérifier : d'abord le livre existe, ensuite il est disponible
         if (!empruntService.livreExiste(request.getLivreId())) {
-            return ResponseEntity.badRequest().build();                            // 400 livre inexistant
+            return ResponseEntity.badRequest().build();
         }
         if (!empruntService.livreDisponible(request.getLivreId())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();             // 409 (RM4)
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        // 2. Agir (le service applique RM5)
         Emprunt empruntCree = empruntService.creer(EmpruntMapper.versEntite(request));
-        // 3. Répondre
-        return ResponseEntity.status(HttpStatus.CREATED).body(EmpruntMapper.versResponse(empruntCree)); // 201
+        return ResponseEntity.status(HttpStatus.CREATED).body(EmpruntMapper.versResponse(empruntCree));
     }
 
     // Endpoint 18 — PATCH /api/v1/emprunts/{id}/retour (pas de corps)
@@ -96,19 +92,16 @@ public class EmpruntController {
     })
     @PatchMapping("/{id}/retour")
     public ResponseEntity<EmpruntResponse> retourner(@PathVariable Long id) {
-        // 1. Vérifier
         Optional<Emprunt> resultat = empruntService.recupererParId(id);
         if (resultat.isEmpty()) {
-            return ResponseEntity.notFound().build();                              // 404
+            return ResponseEntity.notFound().build();
         }
         Emprunt emprunt = resultat.get();
         if (emprunt.getRendu()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();             // 409 (RM6)
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        // 2. Agir
         Emprunt empruntRendu = empruntService.retourner(emprunt);
-        // 3. Répondre
-        return ResponseEntity.ok(EmpruntMapper.versResponse(empruntRendu));        // 200
+        return ResponseEntity.ok(EmpruntMapper.versResponse(empruntRendu));
     }
 
     // Endpoint 19 — GET /api/v1/emprunts/en-cours
@@ -120,7 +113,7 @@ public class EmpruntController {
     public ResponseEntity<PagedModel<EmpruntResponse>> listerEnCours(
             @PageableDefault(size = 10, sort = "dateEmprunt") Pageable pageable) {
         Page<Emprunt> page = empruntService.recupererEnCours(pageable);
-        return ResponseEntity.ok(EmpruntMapper.versPage(page));                    // 200
+        return ResponseEntity.ok(EmpruntMapper.versPage(page));
     }
 
     // Endpoint 20 — GET /api/v1/emprunts/en-retard (RM7)
@@ -132,6 +125,6 @@ public class EmpruntController {
     public ResponseEntity<PagedModel<EmpruntResponse>> listerEnRetard(
             @PageableDefault(size = 10, sort = "dateEmprunt") Pageable pageable) {
         Page<Emprunt> page = empruntService.recupererEnRetard(pageable);
-        return ResponseEntity.ok(EmpruntMapper.versPage(page));                    // 200
+        return ResponseEntity.ok(EmpruntMapper.versPage(page));
     }
 }

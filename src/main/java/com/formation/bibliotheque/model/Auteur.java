@@ -7,12 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-// Un auteur = une ligne de la table "auteurs"
 @Entity
 @Table(name = "auteurs")
 public class Auteur {
 
-    // L'id est généré par la base (1, 2, 3...)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,14 +21,10 @@ public class Auteur {
     @Column(nullable = false)
     private String prenom;
 
-    // Pas obligatoire, donc pas d'annotation
     private String nationalite;
 
-    // Constructeur vide : JPA en a besoin
     public Auteur() {
     }
-
-    // --- Getters et setters ---
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.LocalDate;
 
-// Ce que le client reçoit pour un emprunt.
 // Pas d'email ici (RM8). "enRetard" n'existe pas en base : il est calculé par le mapper.
 @JsonPropertyOrder({"id", "livreId", "emprunteur", "dateEmprunt", "dateRetourPrevue",
         "dateRetourEffective", "rendu", "enRetard"})

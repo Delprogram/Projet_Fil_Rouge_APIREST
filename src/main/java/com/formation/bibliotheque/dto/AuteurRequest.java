@@ -3,7 +3,6 @@ package com.formation.bibliotheque.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-// Ce que le client envoie pour créer ou modifier un auteur (pas d'id : c'est la base qui le donne)
 public class AuteurRequest {
 
     @NotBlank(message = "Le nom est obligatoire")
@@ -14,7 +13,6 @@ public class AuteurRequest {
     @Size(max = 100, message = "Le prénom ne doit pas dépasser 100 caractères")
     private String prenom;
 
-    // Optionnel
     @Size(max = 50, message = "La nationalité ne doit pas dépasser 50 caractères")
     private String nationalite;
 

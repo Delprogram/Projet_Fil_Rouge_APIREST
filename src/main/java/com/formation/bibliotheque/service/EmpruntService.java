@@ -57,7 +57,6 @@ public class EmpruntService {
         emprunt.setDateRetourEffective(null);
         emprunt.setRendu(false);
 
-        // Stock du livre - 1
         Optional<Livre> resultat = livreRepository.findById(emprunt.getLivreId());
         if (resultat.isPresent()) {
             Livre livre = resultat.get();
@@ -73,7 +72,6 @@ public class EmpruntService {
         emprunt.setRendu(true);
         emprunt.setDateRetourEffective(LocalDate.now());
 
-        // Le livre a pu être supprimé entre-temps : on vérifie
         Optional<Livre> resultat = livreRepository.findById(emprunt.getLivreId());
         if (resultat.isPresent()) {
             Livre livre = resultat.get();
@@ -84,7 +82,6 @@ public class EmpruntService {
         return empruntRepository.save(emprunt);
     }
 
-    // Emprunts pas encore rendus
     public Page<Emprunt> recupererEnCours(Pageable pageable) {
         return empruntRepository.findByRenduFalse(pageable);
     }

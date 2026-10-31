@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Repository
 public interface EmpruntRepository extends JpaRepository<Emprunt, Long> {
 
-    Page<Emprunt> findByRenduFalse(Pageable pageable);                            // emprunts non rendus
+    Page<Emprunt> findByRenduFalse(Pageable pageable);
 
-    Page<Emprunt> findByRenduFalseAndDateRetourPrevueBefore(LocalDate date,       // non rendus ET date prévue
-                                                            Pageable pageable);   // strictement avant "date"
+    Page<Emprunt> findByRenduFalseAndDateRetourPrevueBefore(LocalDate date,
+                                                            Pageable pageable);
 }

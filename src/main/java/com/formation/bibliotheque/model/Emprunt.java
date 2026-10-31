@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
-// Un emprunt = une ligne de la table "emprunts"
 @Entity
 @Table(name = "emprunts")
 public class Emprunt {
@@ -18,7 +17,6 @@ public class Emprunt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Le livre emprunté, désigné par son id
     @Column(nullable = false)
     private Long livreId;
 
@@ -35,7 +33,6 @@ public class Emprunt {
     @Column(nullable = false)
     private LocalDate dateRetourPrevue;
 
-    // Reste null tant que le livre n'est pas rendu
     private LocalDate dateRetourEffective;
 
     @Column(nullable = false)
@@ -43,8 +40,6 @@ public class Emprunt {
 
     public Emprunt() {
     }
-
-    // --- Getters et setters ---
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

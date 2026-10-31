@@ -11,13 +11,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-// Convertit DTO <-> entité pour les emprunts
 public final class EmpruntMapper {
 
     private EmpruntMapper() {
     }
 
-    // On recopie seulement ce que le client envoie.
     // Les dates et "rendu" restent vides : c'est le service qui les remplit (RM5).
     public static Emprunt versEntite(EmpruntRequest request) {
         Emprunt emprunt = new Emprunt();

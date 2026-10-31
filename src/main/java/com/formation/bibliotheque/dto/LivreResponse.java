@@ -2,7 +2,6 @@ package com.formation.bibliotheque.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-// Ce que le client reçoit pour un livre
 @JsonPropertyOrder({"id", "titre", "isbn", "prix", "anneePublication", "stock", "auteurId"})
 public class LivreResponse {
 

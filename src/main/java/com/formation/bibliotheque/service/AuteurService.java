@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-// La logique métier des auteurs. Le service ne connaît pas HTTP :
-// il renvoie des objets, c'est le contrôleur qui choisit le code (200, 404...).
 @Service
 public class AuteurService {
 
@@ -23,12 +21,10 @@ public class AuteurService {
         this.livreRepository = livreRepository;
     }
 
-    // Une page d'auteurs
     public Page<Auteur> recupererTous(Pageable pageable) {
         return auteurRepository.findAll(pageable);
     }
 
-    // L'auteur, ou un Optional vide s'il n'existe pas
     public Optional<Auteur> recupererParId(Long id) {
         return auteurRepository.findById(id);
     }
@@ -38,7 +34,6 @@ public class AuteurService {
     }
 
     public Auteur creer(Auteur auteur) {
-        // id à null pour être sûr de créer, et pas de modifier un auteur existant
         auteur.setId(null);
         return auteurRepository.save(auteur);
     }
@@ -55,12 +50,10 @@ public class AuteurService {
         return livreRepository.existsByAuteurId(id);
     }
 
-    // Les vérifications sont déjà faites par le contrôleur
     public void supprimer(Long id) {
         auteurRepository.deleteById(id);
     }
 
-    // Endpoint 6 : les livres d'un auteur
     public Page<Livre> recupererLivres(Long id, Pageable pageable) {
         return livreRepository.findByAuteurId(id, pageable);
     }
